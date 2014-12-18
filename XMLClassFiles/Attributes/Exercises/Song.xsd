@@ -1,0 +1,41 @@
+﻿<?xml version="1.0"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Song">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="Title">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="Type" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+				<xs:element name="Year" type="xs:gYear"/>
+				<xs:element name="Length" type="xs:string"/>
+				<xs:element name="Artists">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Artist" type="xs:string" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Lyrics">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Stanza" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Line" type="xs:string" maxOccurs="unbounded"/>
+									</xs:sequence>
+									<xs:attribute name="Artist" use="required"  type="xs:string"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>History Test: End</title>
+<style>
+	#lastAnswer{
+		font-weight:bold;
+	}
+</style>
+
+<script type="text/javascript">
+	history.go(1);
+	var s = location.search;
+	alert(s);
+	//***ALTERNATE SOLUTION***(from video)
+	//This code is a little dense.  Hopefully we'll go over it later!
+	
+	//Create a 'values' literal object
+	var values = {};
+	//Create a query string by substringing at index 1.
+	var queryString= s.substring(1);
+	alert(queryString);
+	//create an array of name-value pairs
+	var parameters= queryString.split('&');
+	alert(parameters);
+	for (var i=0; i<parameters.length; i++){
+		alert(parameters[i]);
+		var parameter=parameters[i].split('=');
+		alert(parameter);
+		alert(parameter[0]);
+		alert(parameter[1]);
+		values[parameter[0]]= parameter[1];
+		alert(values[parameter[0]]= parameter[1]);
+	}
+	
+	var response=(values.answer == "Washington") ? "Right!" : "Wrong!";
+	//***EXERCISE SOLUTION***
+ 	/*var start = s.indexOf("=")+1;
+	var answer = s.substring(start);
+	var response = (answer == "Washington") ? "Right!" : "Wrong!";*/
+</script>
+</head>
+<body>
+<p id="lastAnswer">
+	<script type="text/javascript">
+		document.write("User "+ values.userid + ", your answer was: " + values.answer + ". " + response);
+		//EXERCISE document.write
+		/*document.write("Your answer was: " + answer + ". " + response);*/
+	</script>
+</p>
+<p>You're done.</p>
+<p><a href="question1.html">Start Quiz Again</a></p>
+</body>
+</html>

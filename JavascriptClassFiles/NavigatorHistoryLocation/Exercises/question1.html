@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>History Test: Question 1</title>
+<script type="text/javascript">
+function validate(form){
+    var errors = [];
+     
+    if (!checkRadioArray(form.answer) ) {
+        errors[errors.length] = "You must pick an answer!";
+	}
+        
+    if (errors.length > 0) {
+        reportErrors(errors);
+        return false;
+    }
+     
+    return true;
+}
+
+function checkRadioArray(radioButtons){
+    for (var i=0; i < radioButtons.length; i++) {
+        if (radioButtons[i].checked) {
+            return true;
+        }
+    }
+    return false;
+}
+ 
+function reportErrors(errors){
+    var msg = "There were some problems...\n";
+    var numError;
+    for (var i = 0; i<errors.length; i++) {
+        numError = i + 1;
+        msg += "\n" + numError + ". " + errors[i];
+    }
+    alert(msg);
+}
+</script>
+</head>
+<body>
+
+<form action="question2.html" onSubmit="return validate(this);">
+	Who was the first president of the United States?<br>
+	<input type="radio" name="answer" value="Lincoln">Abraham Lincoln<br>
+	<input type="radio" name="answer" value="McKinley">William McKinley<br>
+	<input type="radio" name="answer" value="Washington">George Washington<br>
+	<input type="radio" name="answer" value="Kennedy">John F. Kennedy<br>
+	<input type="submit" value="Answer">
+    <input type="hidden" name ="userid" value="1">
+</form>
+</body>
+</html>

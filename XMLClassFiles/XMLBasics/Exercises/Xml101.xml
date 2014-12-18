@@ -1,0 +1,76 @@
+﻿<?xml version="1.0"?>
+<course>
+	<head>
+		<title>Introduction to XML</title>
+		<course_num>XML101</course_num>
+		<course_length>3 days</course_length>
+	</head>
+	<body>
+		<prerequisites>
+			<prereq>Experience with Word Processing</prereq>
+			<prereq optional="true">Experience with HTML</prereq>
+			<!-- Add a required prerequisite: "Experience with computers"  -->
+			<prereq optional="false">Experience with computers</prereq>
+		</prerequisites>
+		<outline>
+			<topics>
+				<topic>XML Basics
+					<topics>
+						<topic>What is XML?</topic>
+						<topic>XML Benefits
+							<topics>
+								<topic>XML Holds Data, Nothing More</topic>
+								<topic>XML Separates Structure from Formatting</topic>
+								<topic>XML Promotes Data Sharing</topic>
+								<topic>XML is Human-Readable</topic>
+								<topic>XML is Free</topic>
+								
+							</topics>
+						</topic>
+						<!-- 
+							Add the following to the topics list ("XML Documents" and "Creating a Simple XML File" should be siblings of "What is XML?" and "XML Benefits"):
+							
+							-XML Documents
+								-The Prolog
+								-Elements
+								-Attributes
+								-CDATA
+								-XML Syntax Rules
+								-Special Characters
+							-Creating a Simple XML File
+						 -->
+            <topic>XML Documents
+              <topics>
+                <topic>The Prolog</topic>
+                <topic>Elements</topic>
+                <topic>Attributes</topic>
+						    <topic>CDATA</topic>
+						    <topic>XML Syntax Rules</topic>
+						    <topic>Special Characters</topic>
+              </topics> 
+            </topic>
+            <topic>Creating a Simple XML File</topic>
+					</topics>
+				</topic>
+			</topics>
+		</outline>
+	</body>
+	<foot>
+		<creator>Josh Lockwood</creator>
+		<date_created>2011-07-25</date_created>
+		<modifications madeby="Colby Germond" date="2011-05-05">
+			<modification type="insert">Added HTML prerequisite</modification>
+			<modification type="edit">Fixed some typos</modification>
+		</modifications>
+		<!-- 
+			Add a modifications element that shows the modifications you've made.
+		 -->
+		 <modifications madeby="Peter Timpone" date="2013-20-13">
+			<modification type="insert">Added experience with computers prerequisite</modification>
+			<modification type="insert">Added "XML Documents" topic</modification>
+			<modification type="insert">Added "The Prolog", "Elements", "Attributes", "CDATA", "XML Syntax Rules",  and "Special Characters" topics</modification>
+			<modification type="insert">Added "Creating a Simple XML File" topic</modification>
+		</modifications>
+
+	</foot>
+</course>

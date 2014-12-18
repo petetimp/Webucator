@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Conditionals</title>
+<script type="text/javascript">
+
+function greetUser (){
+	var gender=prompt('What is your gender?','');
+		gender=gender.toLowerCase();
+	var lastName=prompt('What is your last name?','');
+		
+	if (gender != 'male' && gender != 'female'){
+		prompt("Please enter 'male' or 'female': ");
+	}
+	if (lastName == null){
+		prompt("Please enter your last name: ");
+	}
+	if (isNaN(lastName) == false ){
+		var lastName=prompt("Your last name can't be a number.  Please try again: ");
+	}
+	if (lastName.substr(0, 1) == lastName.substr(0, 1).toLowerCase()) {
+		/*The above 'if' statement is what you would use to check the value of a character located within a string*/
+		lastName = prompt("The first letter must be capitalized.  Re-enter:", "") || "";
+	}
+	if (gender == 'male'){
+		alert("Hello Mr. "+lastName);
+	}
+	else if (gender == 'female'){
+		alert("Hello Ms. "+lastName)
+	}else{
+		alert(gender+ " is not a gender!");
+	}
+}
+		
+
+/*
+Write the greetUser() function that prompts the user
+for his/her gender and last name and stores the results
+in variables.
+
+For gender:
+	If the user enters a gender other than "Male" or "Female",
+	prompt him/her to try again.
+
+For last name:
+	If the user leaves the last name blank, prompt him/her to
+	try again.
+	If the user enters a number for the last name, tell the user
+	that a last name can't be a number and prompt him/her to try again.
+	
+After collecting the gender and last name...
+	If the gender is valid, pop up an alert that
+	greets the user appropriately (e.g, "Hello Ms. Smith!")
+	If the gender is not valid, pop up an alert
+	that reads something like "XYZ is not a gender!"
+
+*/
+</script>
+</head>
+<body onload="greetUser();">
+	<p>Nothing to show here.</p>
+</body>
+</html>

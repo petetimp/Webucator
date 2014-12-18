@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>South America</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script>
+window.addEventListener("load",drawPath,false);
+
+function drawPath() {
+	var canvas=document.getElementById("my-canvas");
+	if (canvas.getContext) {
+		var context = canvas.getContext("2d");
+		//add code here
+		var mapImg = new Image();  
+		mapImg.src='Images/south-america.gif';
+		mapImg.onload = function() { 
+			context.drawImage(mapImg,0,0);
+			drawFlags(0);
+		}
+	}
+}
+/*Country	Source X	Source Y	Destination X	Destination Y
+Chile		283			88			100				250
+Argentina	255			4			130				300
+Brazil		171			60			200				170
+Paraguay	59			452			170				250
+Uruguay		59			564			185				310
+Bolivia		59			200			135				210
+Peru		31			424			75				170*/
+function drawFlags(pic) {
+	var pics = [
+		{
+			"sx" : 283, "sy" : 88, "dx" : 100, "dy" :250, "country" : "Chile"
+		},
+		{
+			"sx" : 255, "sy" : 4, "dx" : 130, "dy" :300, "country" : "Argentina"	
+		},
+		{
+			"sx" : 171, "sy" : 60, "dx" : 200, "dy" :170, "country" : "Brazil"
+		},
+		{
+			"sx" : 59, "sy" : 452, "dx" : 170, "dy" :250, "country" : "Paraguay"
+		},
+		{
+			"sx" : 59, "sy" : 564, "dx" : 185, "dy" :310, "country" : "Uruguay"
+		},
+		{
+			"sx" : 59, "sy" : 200, "dx" : 135, "dy" :210, "country" : "Bolivia"
+		},
+		{
+			"sx" : 31, "sy" : 424, "dx" : 75, "dy" :170, "country" : "Peru"
+		}
+	];
+		var canvas=document.getElementById("my-canvas");
+		if (canvas.getContext) {
+			var context = canvas.getContext("2d");
+			var flagImg= new Image();
+			flagImg.src='Images/flags.png';
+			flagImg.onload = function() {
+			//drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+				for(i=pic; i<7; pic++){
+					context.drawImage(flagImg, pics[pic].sx, pics[pic].sy, 18, 13, pics[pic].dx, pics[pic].dy, 18, 13);
+					context.fillText(pics[pic].country,pics[pic].dx,pics[pic].dy);
+				}
+			}
+		}
+}
+</script>
+</head>
+<body>
+<canvas id="my-canvas" height="500" width="345">Your browser doesn't support canvas.</canvas>
+</body>
+</html>

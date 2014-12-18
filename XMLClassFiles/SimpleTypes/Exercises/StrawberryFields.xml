@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Song xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Song4.xsd">
+	<Title>Strawberry Fields</Title>
+	<Year>1967</Year>
+	<Artist>Beatles</Artist>
+	<Length>Long</Length>
+</Song>

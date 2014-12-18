@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cascading Select Menus</title>
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript" src="rockbands.js"></script>
+<script type="text/javascript">
+			//selChanged(band,rockBands,artist);
+	function selChanged(sel,data,dependentSel) {
+		//Get the selection("beatles","stones",etc.) by accessing the value of the option that was selected from the band select menu
+		var selection = sel.options[sel.selectedIndex].value;
+		//create an empty array to populate with artist names
+		var arrOptions=[];
+		//create a loop in order to transport the values from rockbands.js to the newly created arrOptions array elements
+		for (i=0; i<data[selection].length; i++){
+						//rockBands[selection][i].name
+			arrOptions[i]=data[selection][i].name;
+		}
+		//Declare an opt variable to hold the 'Option' object
+		var opt;
+		dependentSel.options.length = 0;
+		//you can also use removeAllChildren(dependentSel); for above line
+		 //Add this option for a better user experience		
+		 appendOptionToSelect(dependentSel,new Option("Please select",""));
+		for (i=0; i<arrOptions.length; i++) {
+			//Create a new option object that holds the name of an artist depending on the value of index 'i'
+			opt = new Option(arrOptions[i]);
+			//add this option object onto the new select menu
+			appendOptionToSelect(dependentSel,opt);
+		}
+	}
+	//My own function!!!
+		   //goToArtistURL(band,rockBands,artist);
+	function goToArtistURL(sel,data,dependentSelect){
+		//Get the parent selection("beatles","stones",etc.) by accessing the value of the option that was selected from the band select menu
+		var parentSelection = sel.options[sel.selectedIndex].value;
+		//Get the child selection("Paul McCartney","John Lennon",etc.) by accessing the value of the option that was selected from the artist select menu
+		var childSelection  = dependentSelect.options[dependentSelect.selectedIndex].value;
+		//create an empty array to populate with artist names
+		var arrArtists=[];
+		//create a loop in order to transport the values from rockbands.js to the newly created arrOptions array elements
+				// rockbands["beatles"]
+		for (i=0; i<data[parentSelection].length; i++){
+						//rockBands["beatles"][0].name= Paul McCartney
+			arrArtists[i]=data[parentSelection][i].name;
+			//if the childSelection (artist name) is equal to
+			//arrArtists[i] (artist name) assign the value of rockBands[parentSelection][i].value (url) to 'var url'.
+			if(childSelection==arrArtists[i]){
+				//var url= rockBands["Beatles"][0].value="http://www.paulmccartney.com"
+				var url=data[parentSelection][i].value;
+			}
+		}
+		//set the location of the current page to the url.
+		location.href=url;
+	}
+	observeEvent(window,"load",function() {
+		//get the band select menu by its ID			
+		var band = document.getElementById("band");
+		//get the artist select menu by its ID
+		var artist = document.getElementById("artist");
+		//When a selection is made on the band select menu, run the selChanged function
+		observeEvent(band,"change",function() {
+			selChanged(band,rockBands,artist);
+		});
+		//When a selection is made on the artist select menu, run the goToArtistURL function
+		observeEvent(artist,"change",function() {
+			goToArtistURL(band,rockBands,artist);
+		});
+	});
+</script>	
+</head>
+<body>
+<form name="menu">
+	<label for="band">Band:</label>
+    <!--band select menu-->
+	<select id="band" name="band">
+		<option value="">Please select</option>
+		<option value="beatles">Beatles</option>
+		<option value="stones">Rolling Stones</option>
+		<option value="genesis">Genesis</option>
+		<option value="eagles">Eagles</option>
+	</select>
+    <label for="artist">Artist:</label>
+    <!--empty artist select menu-->
+	<select id="artist"></select>
+</form>
+</body>
+</html>

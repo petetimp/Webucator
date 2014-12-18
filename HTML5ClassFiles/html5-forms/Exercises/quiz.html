@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML5 Quiz</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script>
+
+	if (window.addEventListener) {
+		//When the page loads call addLoadEvents
+		window.addEventListener("load", addLoadEvents, false);
+	}
+	function addLoadEvents() {
+		//This is to display the markup after question 3
+		//grab the 3rd question by its id and wait until the user moves on to the next question
+		document.getElementById('q3').addEventListener("change",function() {
+			//grab the 3rd question's output (output element) by its id and set its inner
+			//HTML to the evaluation of the value entered by the user in question 3
+			//***REMEMBER that 'this.value' refers to question 3 and not question 3's output
+            document.getElementById('q3output').innerHTML = eval(this.value);
+        }, false);
+		//Grab the quiz (form) by its id and wait for the user to move on to the next 
+		//question, which calls updateMeasures();
+		document.getElementById('quiz').addEventListener("change",function() {
+			updateMeasures();
+		}, false);
+	}
+	
+	function updateMeasures() {
+		//grab all of the input elements (questions) by their tag name (input)
+		var questions = document.getElementsByTagName("input");
+		//set the length of this new array to 'numQuestions'
+		var numQuestions = questions.length;
+		//declare a 'numAnswers' var and set it equal to 0 to hold the number of questions
+		//answered 
+		var numAnswers = 0;
+		//Do the same thing for the correct answers by declaring 'numCorrectAnswers'
+		var numCorrectAnswers = 0;
+		//declare an answers array that holds the answers to the questions submitted
+		var answers = ["orange","23","99+9/9","1963-11-22","http://www.google.com"];
+		//from i=0 to the number of questions(5)...
+		for (i=0; i<numQuestions; i++){
+			/*'validity.valid' checks the validity of the form input.  This if statement
+			makes sure that it's true*/
+			//if the length of the value of the question at the specified index is greater 	
+			//than 0 (means that the user has filled something out), then increase the 
+			//number of answers by 1 (remember than '.value' must be used for user input)
+			if (questions[i].validity.valid && questions[i].value.length>0){
+				numAnswers++;
+			}
+			//if the value of the question at the specified index is equal to the answer at 			//the specified index, then increase the numberCorrectAnswers var by 1.
+			if (questions[i].value==answers[i]){
+				numCorrectAnswers++;
+			}
+		}
+		//grab the progress element by its id and assign it to var 'formProgress'
+		var formProgress = document.getElementById("form-progress");	
+		//set the value of the formprogress progress element to the numAnswers to show
+		//how many questions the user has answered out of the total amount of questions
+		formProgress.value=numAnswers;
+		//This is for the other bar, which is actually a meter bar. Grab the progress bar 
+		//by its ID and assign it to var correctProgress
+		var correctProgress = document.getElementById("correct-answers");
+		//Set the value of the 'correct' meter bar to the number of correct answers 
+		correctProgress.value=numCorrectAnswers;
+		//This is for browsers that don't support the progress bar.
+		/*round the number of completed questions (numAnswers) divided by the length of the
+		questions (numQuestions) (5), and multiply the result by 100 to get a percentage*/
+		var percentComplete = Math.round(numAnswers/numQuestions*100);
+		/*grab the first span element nested within the formProgress element, and change 
+		its innerHTML to the percent complete (percentComplete) */
+		formProgress.getElementsByTagName("span")[0].innerHTML = percentComplete;
+		//round the number of correct answers (numCorrectAnswers) divided by the length of 	
+		//the quesions (numQuestions) (5) and multiply the result by 100 to get a %.
+		var percentCorrect = Math.round(numCorrectAnswers/numQuestions*100);	
+		/*grab the first span element nested within the correctProgress element, and change
+		its innerHTML to the percent correct (percentCorrect) */
+		correctProgress.getElementsByTagName("span")[0].innerHTML= percentCorrect;
+	}
+</script>
+</head>
+<body>
+<h1>Quiz</h1>
+<form method="post" action="process.xyz" id="quiz">
+	<ol>
+		<li>
+			<label for="q1">What color do you get when you mix red and yellow?</label>
+			<input type="color" name="q1" id="q1" required placeholder="Enter Color">
+		</li>
+		<li>
+			<label for="q2">What is the first primary number greater than 20?</label>
+			<input type="number" name="q2" id="q2" min="20" step="1" required placeholder="Enter Number">
+		</li>
+		<li>
+			<label for="q3">Using exactly four 9s and no other digits, write an equation which evaluates to 100. You may use addition (+), subtraction (-), multiplication (*), and division (/). Do not include spaces.</label>
+			<input type="text" name="q3" id="q3" required placeholder="Enter Equation" pattern="[9\+\-\*/]{4,7}">
+			<output id="q3output"></output>
+		</li>
+		<li>
+			<label for="q4">What date was John F. Kennedy assassinated?</label>
+			<input type="date" name="q4" id="q4" required placeholder="Enter Date">
+		</li>
+		<li>
+			<label for="q5">What is the world's most popular search engine?</label>
+			<input type="url" name="q5" id="q5" required placeholder="Enter URL" list="q5list">
+			<datalist id="q5list">
+				<option value="http://www.yahoo.com">
+				<option value="http://www.google.com">
+				<option value="http://www.excite.com">
+				<option value="http://www.dogpile.com">
+			</datalist>
+		</li>
+	</ol>
+	<!--add bar showing percentage of valid (but not necessarily correct) answers-->
+	<!--add bar showing percentage of correct answers-->
+    <progress id="form-progress" min="0" max="5" value="0">
+	Amount Complete: <span>0</span>%
+	</progress><br>
+    <meter id="correct-answers" min="0" max="5" value="0">
+	Correct Answers: <span>0</span>%
+	</meter>
+</form>
+</body>
+</html>

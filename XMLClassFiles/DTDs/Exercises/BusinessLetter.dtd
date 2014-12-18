@@ -1,0 +1,30 @@
+<!--Root Element-->
+<!ELEMENT business_letter (date, recipient+, salutation, body, closing)>
+  <!ELEMENT date (#PCDATA)>
+  <!--Recipient element-->
+  <!ELEMENT recipient (name, company*, address)>
+      <!--Name element-->
+      <!ELEMENT name (firstname,lastname)>
+          <!ATTLIST name title CDATA #IMPLIED>
+          <!ELEMENT firstname (#PCDATA)>
+          <!ELEMENT lastname (#PCDATA)>
+      <!--Company element-->
+      <!ELEMENT company (#PCDATA)>
+      <!--Address element-->
+      <!ELEMENT address (street, city, state, zip, country?)>
+          <!ELEMENT street (#PCDATA)>
+          <!ELEMENT city (#PCDATA)>
+          <!ELEMENT state (#PCDATA)>
+          <!ELEMENT zip (#PCDATA)>
+          <!ELEMENT country (#PCDATA)>
+  <!ELEMENT salutation (#PCDATA)>
+  <!--body element-->
+  <!ELEMENT body (#PCDATA | enclosure | sendto | phone | email)*>
+      <!ELEMENT enclosure (item+)>
+          <!ELEMENT item (#PCDATA)>
+      <!ELEMENT sendto (company*, contact_info)>
+          <!ELEMENT contact_info (street, city, state, zip, country?, employee?)>
+              <!ELEMENT employee (#PCDATA)>
+          <!ELEMENT phone (#PCDATA)>
+          <!ELEMENT email (#PCDATA)>
+  <!ELEMENT closing (#PCDATA)>

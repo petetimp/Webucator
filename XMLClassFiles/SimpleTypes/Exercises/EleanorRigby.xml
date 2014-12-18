@@ -1,0 +1,7 @@
+﻿<?xml version="1.0"?>
+<Song xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Song3.xsd">
+	<Title>Eleanor Rigby</Title>
+	<Year>1966</Year>
+	<Artist>Beatles</Artist>
+	<Length>Short</Length>
+</Song>

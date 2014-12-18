@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="ProperName">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([A-Z0-9][A-Za-z0-9\-']* ?)+"/>
+            	<xs:whiteSpace value="collapse"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Year">
+        <xs:restriction base="xs:gYear">
+            <xs:minInclusive value="1950"/>
+            <xs:maxInclusive value="1970"/>
+        </xs:restriction>
+    </xs:simpleType>
+	<xs:element name="Song">
+		<xs:complexType>
+			<xs:sequence>
+				<!--
+					Add three simple-type elements:
+					1. Title
+					2. Year
+					3. Artist
+				-->
+				<xs:element name="Title" type="ProperName" />
+        <xs:element name="Year" type="Year" />
+        <xs:element name="Artist" type="ProperName"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

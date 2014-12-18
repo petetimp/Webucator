@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Song">
+		<xs:complexType>
+			<xs:sequence>
+				<!--
+					Add three simple-type elements:
+					1. Title
+					2. Year
+					3. Artist
+				-->
+				<xs:element name="Title" type="xs:string" />
+        <xs:element name="Year" type="xs:gyear" />
+        <xs:element name="Artist" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

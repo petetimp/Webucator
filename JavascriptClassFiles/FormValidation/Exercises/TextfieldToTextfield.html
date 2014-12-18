@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Textfield to Textfield</title>
+<script src="DateUDFs.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function getMonth(){
+		
+		var monthNum = document.DateForm.MonthNumber;
+		/*First, declare a variable for the NUMBER of the 	
+		month field in the form */
+		var monthName = document.DateForm.MonthName;
+		/*Second, declare a variable for the NAME of the 	
+		month field in the form*/
+		var month =  monthAsString(parseInt(monthNum.value));
+			/*Third, declare a 'month' variable and set it equal
+		to the user-defined 'monthAsString' function, and 
+		pass the value of monthNumber through it*/
+			if(monthNum.value < 1 || monthNum.value > 12){
+				monthName.value="Bad Number";
+			}
+			else if(isNaN(monthNum.value)){
+				monthName.value="Enter a #";
+			}else{
+		monthName.value=month;
+		/*Last,set the month variable equal to the value of 
+		monthName*/
+			}
+		
+	}
+</script>
+</head>
+<body>
+<h1>Month Check</h1>
+<form name="DateForm">
+	Month Number: <input type="text" name="MonthNumber" size="2">
+	<input type="button" value="Get Month" onclick="getMonth();"><br>
+	Month Name: <input type="text" name="MonthName" size="10">
+</form>
+</body>
+</html>

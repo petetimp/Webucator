@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Slideshow</title>
+<script type="text/javascript">
+var showWin;
+
+function startShow() {
+	showWin = window.open("popup-show.html","showWin","height=300,width=200,left=300,top=100");
+	showWin.focus();
+	//pop up new window with popup-show.html
+}
+</script>
+</head>
+<body>
+<button onclick="startShow()">Start Show</button>
+</body>
+</html>

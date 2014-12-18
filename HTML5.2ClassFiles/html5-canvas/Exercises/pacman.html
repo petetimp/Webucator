@@ -1,0 +1,50 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pacman Challenge</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#my-canvas {
+	background-color: black
+}
+</style>
+<script>
+var diff = 0; //initial value for diff (the height of the triangle we'll draw)
+var delta = 5; //how much the triangle height changes on each iteration
+var maxDiff = 40; //the maximum of the triangle height
+
+function init() {
+	updateDrawing();
+}
+
+function updateDrawing() {
+	//write code here to change diff to be diff plus delta
+	
+	//write code here to set delta equal to the negative of delta if the absolute value
+	//of diff is greater than maxDiff
+	
+	var canvas=document.getElementById("my-canvas");	
+	var context = canvas.getContext("2d");
+	
+	context.fillStyle = "rgb(0,0,0)";
+	context.fillRect(0,0,500,500); //sets a black rectangle 500 pixels on a side
+
+	//draw a circle with yellow fill,
+	//centered on (255,255) of radius 100
+	
+	//draw a black triangle on top of the yellow circle:
+	//use lineTo to draw two angled lines, connect them with closePath,
+	//and set the fill to black
+
+	//use setTimeout to animate the drawing (opening and closing the mouth);
+	//use a timeout of 25 milliseconds
+} 
+
+</script>
+</head>
+<body onload="init()">
+<canvas id="my-canvas" height="500" width="500">Your browser doesn't support canvas.</canvas>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML5 Quiz</title>
+<link href="style-quiz.css" rel="stylesheet" type="text/css">
+<script src="../../html5-common/dateFormat.js" type="text/javascript"></script>
+<script>
+	/*When the window loads, call the addLoadEvents function to automatically place each
+	  question answered into sessionStorage*/
+	window.addEventListener("load", addLoadEvents, false);
+	//declare a prefix variable to hold the value of quiz.  This is to distinguish the 
+	//sessionStorage in this application from the sessionStorage/localStorage in other
+	//web applications
+	var prefix="quiz-";
+	//dateMask is for the challenge
+	var dateMask = "yyyy-mm-dd H:MM:ss";
+	//When the user answers the question on the quiz...
+	function addLoadEvents() {
+		document.getElementById('quiz').addEventListener('change',function() {
+			//check to see if the answer that the user answered is correct and update the 
+			//progress and meter bars accordingly
+			updateMeasures();
+		}, false);
+		//add code here (my part of the code)
+		//grab all of the input elements (questions) by their tag name (input)
+		var questions = document.getElementById("quiz").getElementsByTagName("input");
+		/*This is the most confusing part of the exercise!!  Create a loop that cycles 
+		through and creates an event listener for each question on the quiz
+		****NOTICE how the 'this' keyword is used instead of 'questions[i]'.  We cannot 
+		use the later (quesions[i]) because the index 'i' is equal to the nonexistent 
+		question with index 5 when we try to access a specific question.  The 'this' 
+		keyword can be used to grab the id of the question that has been modified 
+		(answered)****/
+		for (var i=0; i < questions.length; ++i)  {
+			questions[i].addEventListener("change",function() {
+				//Once the question has been answered automatically place the id and value
+				//of the answered question in sessionStorage
+				sessionStorage.setItem(prefix+this.id,this.value);
+				/*The next 3 lines of code are part of the challenge solution*/
+				//Declare a 'now' var that holds a date object
+				var now=new Date();
+				//grab the output element with id "dateLastSaved" and set its innerHTML to
+				//the formatted date using the format method (date object prototype)
+				document.getElementById("dateLastSaved").innerHTML=now.format(dateMask);
+				//place the prefix and the string "dateLastSaved" (key) and the formatted
+				//date (value) into sessionStorage
+                sessionStorage.setItem(prefix+"dateLastSaved",now.format(dateMask));
+			},false);
+		}
+		//grab the save button by its ID 'save' and set it equal to var 'saveButton'
+		var saveButton=document.getElementById("save");
+		//When the user clicks the saveButton, call the saveAnswers() function
+		saveButton.addEventListener("click",saveAnswers,false);
+		//run the 'refill' function regardless of what happens
+		refill();
+	}
+	
+	function saveAnswers() {
+		//add code here(Where my code starts)
+		//grab all of the input elements (questions) by their tag name (input)
+		var questions=document.getElementById("quiz").getElementsByTagName("input");
+		//create a new date object and assign it to 'now' var (challenge solution)
+		var now=new Date();
+		/*create a loop that cycles through all of the questions within the quiz*/
+		for(var i=0; i<questions.length; i++){
+			//for each question declare a 'questionID' var and 'userAnser' var for each question
+			var questionID=questions[i].id;
+			var userAnswer=questions[i].value;
+			//Add the prefix plus the questionID and the userAnswer to local storage
+			/*NOTICE how we used questions[i] in this function and not the 'this' keyword 
+			in 'addLoadEvents'. This is because we are not using event listeners to store
+			 the the entered data*/
+			localStorage.setItem(prefix+questionID,userAnswer);
+			localStorage.setItem(prefix+"dateLastSaved",now.format(dateMask));
+		}
+	}
+	function refill() {
+		/*the refill() function is run when the user refreshes the browser, shuts down the 
+		browser, or closes the quiz window.*/  
+		//fillFrom will be the result of hasAnswers() function
+		var fillFrom = hasAnswers();
+		//if fillFrom is false it means that there is no local/session storage saved from 
+		//the last time the quiz was taken(if in fact the quiz WAS taken) exit out of this 
+		//function and do not run the rest of it
+		if (!fillFrom) return;
+		//Otherwise...
+		var now;//this is for the challenge solution
+		/*The next part of this function asks the user if they want to continue the quiz 
+		where they left off.  If they want to continue, the questions that have been 
+		completed are refilled with the appropriate values from session or local storage.
+		If the user does not want to continue, the questions saved in local/sessionStorage
+		(with the correct prefix) are cleared from session/localStorage*/
+		/* var "confirmed" will be used to have the user confirm the refilling of the 
+		answers (false by default) */
+		var confirmed=false;
+		//this is the message the user will see to confirm refilling the form
+		var msg="It appears you have already started with the quiz. Would you like to continue from where you left off? (" + fillFrom + ")";
+		//grab all of the questions from the quiz
+		var questions = document.getElementById("quiz").getElementsByTagName("input");
+		for (var i=0; i < questions.length; ++i)  {
+			/*if refilling is not confirmed by the user, let's delete the answers and get 
+			out of this function*/
+			/* NOTE:confirm() is a built-in JS method that displays a dialog box with the 
+			specified message, along with an OK and a Cancel button. The method returns true
+			if the user clicks on "OK", else it returns false.*/
+			if (!confirmed && !confirm(msg)) {
+				deleteAnswers();
+				return;	
+			}
+			/*if we get to this point, then the user has confirmed refilling, let's set the 
+			var "confirmed" to true.*/
+			confirmed=true;
+			//if we're refilling from the sessionStorage...
+			if (fillFrom == "session") {
+				//we need the || "" for IE, which returns null if the key is not found.
+				/*set what is returned from sessionStorage's getItem() method (prefix+
+				questions[i].id) to the value of the question at the specified index within 
+				the questions array.*/
+				//Keep in mind that the getItem() method gets the value of the specified key
+				//and that we don't have to set the item because it was already set the last
+				//time the user took the quiz
+				questions[i].value=sessionStorage.getItem(prefix+questions[i].id) || "";
+			} 
+			//else, we're refilling from the local storage...
+			else {
+				//again, we need the || "" for IE, which returns null if the key is not found.
+				/*set what is returned from localStorage's getItem() method (prefix+
+				questions[i].id) to the value of the question at the specified index within 
+				the questions array.*/
+				questions[i].value=localStorage.getItem(prefix+questions[i].id) || "";
+				
+				//This logic is confusing!!! I'm not sure exactly why this line is here, but
+			//it has something to do with having the answers saved when the user closes the 
+			//browser or refreshes the page without saving the answers (hypothesis)*/
+				sessionStorage.setItem(prefix+questions[i].id,questions[i].value);
+			}
+		}//self-explanatory
+		if (fillFrom == "session") {
+			//Get the date that the answers were last saved from sessionStorage and assign
+			//its value (using getItem) to the 'now' var
+			now = sessionStorage.getItem(prefix+"dateLastSaved");
+		} else {
+			//Get the date that the answers were last saved from localStorage and assign
+			//its value (using getItem) to the 'now' var
+			now = localStorage.getItem(prefix+"dateLastSaved");
+			//This logic is confusing!!! I'm not sure exactly why this line is here, but
+			//it has something to do with having the date saved when the user closes the 
+			//browser or refreshes the page without saving the answers (hypothesis)
+			sessionStorage.setItem(prefix+"dateLastSaved",now);
+		}
+		//set the output element's innerHTML to 'now' so that the user can see when the quiz
+		//was last saved everytime they refresh the page or close the browser (or window)
+		document.getElementById("dateLastSaved").innerHTML=now;
+		//after all the refilling is done, update the measures for the progress/meter bars
+		updateMeasures();
+	}
+	
+	function hasAnswers() {
+		//declare a numItems var to hold the length of the session storage
+		var numItems = sessionStorage.length;
+		/*cycle through every key in sessionStorage.  If at least 1 key has the prefix,
+		return "session"*/
+		for (var i=0; i<numItems; ++i)  {
+			if (sessionStorage.key(i).substring(0,prefix.length) == prefix) {
+				return "session";
+			}
+		}
+		//set numItems equal to the length of localStorage.  This is to make sure that every
+		//key in localStorage is cycled through and nothing is missed or looked over
+		numItems = localStorage.length;
+		/*cycle through every key in sessionStorage.  If at least 1 key has the prefix,
+		return "local"*/			
+		for (i=0; i<numItems; ++i)  {
+			if (localStorage.key(i).substring(0,prefix.length) == prefix) {
+				return "local";
+			}
+		}
+		//if no matching keys are found in local/sessionStorage return false.  This means
+		//that nothing from the quiz has been saved.
+		return false;
+	}
+	
+	function deleteAnswers() {
+		//declare a numItems var to hold the length of the session storage
+		var numItems = sessionStorage.length;
+		/*cycle through every key in sessionStorage (backwards).  If at least 1 key has the 
+		prefix,remove the item (answer) using sessionStorage's removeItem method*/
+		for (var i=numItems-1; i >=0; --i)  {
+			if (sessionStorage.key(i).substring(0,prefix.length) == prefix) {
+				sessionStorage.removeItem(sessionStorage.key(i));
+			}
+		}
+		//set numItems equal to the length of localStorage.  This is to make sure that every
+		//key in localStorage is cycled through and nothing is missed or looked over
+		numItems = localStorage.length;
+		/*cycle through every key in sessionStorage(backwards).  If at least 1 key has the 
+		prefix,remove the item (answer) using localStorage's removeItem method*/
+		for (i=numItems-1; i >=0; --i)  {
+			if (localStorage.key(i).substring(0,prefix.length) == prefix) {
+				localStorage.removeItem(localStorage.key(i));
+			}
+		}
+	}
+	
+	function updateMeasures() {
+		//grab all of the input elements (questions) by their tag name (input)
+		var questions = document.getElementsByTagName("input");
+		//set the length of this new array to 'numQuestions'
+		var numQuestions = questions.length;
+		//declare a 'numAnswers' var and set it equal to 0 to hold the number of questions
+		//answered 
+		var numAnswers = 0;
+		//Do the same thing for the correct answers by declaring 'numCorrectAnswers'
+		var numCorrectAnswers = 0;
+		//declare an answers array that holds the answers to the questions submitted
+		var answers = ["orange","23","99+9/9","1963-11-22","http://www.google.com"];
+		//from i=0 to the number of questions(5)...
+		for (var i=0; i<numQuestions; i++) {
+			/*'validity.valid' checks the validity of the form input.  This if statement
+			makes sure that it's true*/
+			//if the length of the value of the question at the specified index is greater 	
+			//than 0 (means that the user has filled something out), then increase the 
+			//number of answers by 1 (remember than '.value' must be used for user input)
+			if ((!questions[i].validity || questions[i].validity.valid) && questions[i].value.length>0) {
+				numAnswers++;
+			}
+			//if the value of the question at the specified index is equal to the answer at 			
+			//the specified index, then increase the numberCorrectAnswers var by 1.
+			if (questions[i].value==answers[i]) {
+				numCorrectAnswers++;	
+			}
+		}
+		/*round the number of completed questions (numAnswers) divided by the length of the
+		questions (numQuestions) (5), multiply the result by 100 to get a percentage, and
+		set it equal to var 'progress'*/
+		var progress=Math.round(numAnswers/numQuestions * 100);
+		/*round the number of correct answers (numCorrectAnswers) divided by the length of 	
+		the quesions (numQuestions) (5) and multiply the result by 100 to get a % and set 
+		it equal to var 'score'.*/
+		var score=Math.round(numCorrectAnswers/numQuestions * 100);
+		//grab the progress element by its id and assign the value of progress (%) to its value
+		document.getElementById("quiz-progress").value=progress;
+		/*grab the first span element nested within the 'quiz-progress' element, and change 
+		its innerHTML to the percent complete (progress) */
+		document.getElementById("quiz-progress").getElementsByTagName("span")[0].innerHTML=progress;
+		//grab the meter element by its id and assign the value of score (%) to its value
+		document.getElementById("quiz-success").value=score;
+		/*grab the first span element nested within the quiz-success element, and change
+		its innerHTML to the percent correct (score) */
+		document.getElementById("quiz-success").getElementsByTagName("span")[0].innerHTML=score;
+	}
+</script>
+</head>
+<body>
+<h1>Quiz</h1>
+<form method="post" action="process.xyz" id="quiz" autocomplete="off">
+	<button type="button" id="save">Save My Answers for Later</button>
+	<ol>
+		<li>
+			<label for="q1">What color do you get when you mix red and yellow?</label>
+			<input type="color" name="q1" id="q1" required placeholder="Enter Color">
+		</li>
+		<li>
+			<label for="q2">What is the first primary number greater than 20?</label>
+			<input type="number" name="q2" id="q2" min="20" step="1" required placeholder="Enter Number">
+		</li>
+		<li>
+			<label for="q3">Using exactly four 9s and no other digits, write an equation which evaluates to 100. You may use addition (+), subtraction (-), multiplication (*), and division (/). Do not include spaces.</label>
+			<input type="text" name="q3" id="q3" required placeholder="Enter Equation" pattern="[9\+\-\*/]{4,7}">
+		</li>
+		<li>
+			<label for="q4">What date was John F. Kennedy assassinated?</label>
+			<input type="date" name="q4" id="q4" required placeholder="Enter Date">
+		</li>
+		<li>
+			<label for="q5">What is the world's most popular search engine?</label>
+			<input type="url" name="q5" id="q5" required placeholder="Enter URL" list="q5list">
+			<datalist id="q5list">
+				<option value="http://www.yahoo.com">
+				<option value="http://www.google.com">
+				<option value="http://www.excite.com">
+				<option value="http://www.dogpile.com">
+			</datalist>
+		</li>
+	</ol>
+	<strong>Progress:</strong>
+	<progress id="quiz-progress" min="0" max="100" title="Shows percentage of valid answers"><span>0</span>%</progress>
+	<strong>Success:</strong>
+	<meter id="quiz-success" min="0" max="100" title="Shows percentage of correct answers"><span>0</span>%</meter>
+</form>
+<hr>
+<small>Answers last saved: <output id="dateLastSaved">not saved</output></small>
+</body>
+</html>

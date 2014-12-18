@@ -1,0 +1,42 @@
+﻿<?xml version="1.0"?>
+<Song xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Song.xsd">
+	<Title Type="duet">The Girl Is Mine</Title>
+	<Year>1983</Year>
+	<Length>Medium</Length>
+	<Artists>
+		<Artist>Michael Jackson</Artist>
+		<Artist>Paul McCartney</Artist>
+	</Artists>
+	<Lyrics>
+		<Stanza Artist="MJ">
+			<Line>Every night she walks right in my dreams</Line>
+			<Line>Every night she walks right in my dreams</Line>
+			<Line>I'm so proud I am the only one</Line>
+			<Line>Who is special in her heart</Line>
+			<Line>The girl is mine</Line>
+			<Line>The doggone girl is mine</Line>
+			<Line>I know she's mine</Line>
+			<Line>Because the doggone girl is mine</Line>
+		</Stanza>
+		<Stanza Artist="PM">
+			<Line>I don't understand the way you think</Line>
+			<Line>Saying that she's yours not mine</Line>
+			<Line>Sending roses and your silly dreams</Line>
+			<Line>Really just a waste of time</Line>
+			<Line>Because she's mine</Line>
+			<Line>The doggone girl is mine</Line>
+			<Line>Don't waste your time</Line>
+			<Line>Because the doggone girl is mine </Line>
+			<Line>I love you more than he</Line>
+			<Line>(Take you anywhere)</Line>
+		</Stanza>
+		<Stanza Artist="MJ">
+			<Line>I know she'll tell you I'm the one for her</Line>
+			<Line>'Cause she said I blow her mind</Line>
+			<Line>The girl is mine</Line>
+			<Line>The doggone girl is mine</Line>
+			<Line>Don't waste your time</Line>
+			<Line>Because the doggone girl is mine</Line>
+		</Stanza>
+	</Lyrics>
+</Song>

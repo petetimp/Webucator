@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="../reset-meyer.css">
+<style type="text/css">
+	#mainMenu{
+		margin:10px;
+		width:900px;   /* Keeps menu from wrapping.  Not 
+						activated until 'float:left' is used*/
+		font-family: "Trebuchet MS";
+	}
+	
+	#mainMenu li {
+		position:relative; /*puts menu list items in position to flow 						   with nested list items*/
+		
+		display:block; /*Does not have any effect on display.
+					   'display:block' under 'mainMenu a{' does*/
+					   	
+		width:120px; /*Width of each list item*/
+		
+		float:left;   /*Displays list items from right to left*/
+		border:1px solid #000;
+		margin-left:2px;
+	}
+	
+	#mainMenu a {
+		display:block; /*Keeps links in line with list item 
+					   formatting, although not required for
+					   #mainmenu li{*/
+		padding:3px;
+		text-decoration:none;
+		background-color:#fff;
+		color:#009;
+	}
+	
+	#mainMenu a:hover {
+		background-color:#009;
+		color:#fff;
+	}
+	
+	#mainMenu li ul{
+		position:absolute; /*Positions nested list with nearest 								
+							non-statically positioned element (in 
+							this case, the menu list item)*/
+		margin:0px;
+		padding:0px;
+		left:-3px;
+		top:22px;
+		display:none; /*Hides drop-down menu until it is hovered 	
+					  over*/
+	}
+	
+	#mainMenu li ul li { /*formatting for nested list items*/
+		width:150px;
+		font-size:smaller;
+		border-top:none; /*Eliminates top-border.  First part of 	
+						 border-thinning trick.*/
+	}
+	
+	#mainMenu li ul li:first-child { /*Adds border to top of first 
+									 child nested list item*/
+									 
+		border-top:1px solid #000;
+	}
+	
+	#mainMenu li:hover ul {/*Displays drop-down menu (nested list) 	
+							when list item is hovered over*/
+		display:block;	
+		background-color:#fff; /*for IE7*/
+	}
+	
+	#mainMenu li:hover ul li ul { /*This is a double-nested flyout 	
+								  menu.  The 'li' between the two 	
+								  'ul's at the end is optional and 
+								  for demonstration only.*/
+		
+		position:absolute; /*Positions double-nested list/flyout menu 							with nearest non-statically positioned 		
+							element (in this case, the nested menu 		
+							list item)*/
+		width:150px;
+		left:151px;
+		top:-1px;
+		display:none;	   /*Hides flyout menu until it is hovered 						   						   over*/	
+	}
+	
+	/*#mainMenu li:hover ul ul { ****This rule was found in the 
+								 solution, but is actually not 	
+								 required for the code to display 
+								 properly****
+		display:none;	
+	}*/
+	
+	#mainMenu li:hover ul li:hover>ul{ /*Displays flyout menu and 	
+									   subsequent nested flyout 
+									   menus.  This is accomplished 	
+									   with the li:hover>ul child 	
+									   selector*/
+		display:block;
+		background-color:#fff; /*for IE7*/	
+	}
+	
+	
+	
+	
+
+	
+</style>
+<title>CSS Menu</title>
+</head>
+<body>
+<ul id="mainMenu">
+	<li><a href="home.html">Home</a></li>
+	<li><a href="services.html">Services</a>
+		<ul>
+			<li><a href="service1.html">Service 1</a></li>
+			<li><a href="service2.html">Service 2</a></li>
+			<li><a href="service3.html">Service 3</a></li>
+		</ul>
+	</li>
+	<li><a href="products.html">Products</a>
+		<ul>
+			<li><a href="product1.html">Product 1</a></li>
+			<li><a href="product2.html">Product 2</a></li>
+			<li><a href="product3.html">Product 3</a></li>
+		</ul>
+	</li>
+	<li><a href="support.html">Support</a></li>
+	<li><a href="blog.html">Blog</a></li>
+	<li><a href="about.html">About</a>
+		<ul>
+			<li><a href="history.html">Company History</a></li>
+			<li><a href="staff.html">Our Staff</a></li>
+			<li><a href="press.html">Press Releases</a></li>
+			<li><a href="investorInfo.html">Investor Information</a>
+				<ul>
+					<li><a href="sec.html">SEC Filings</a></li>
+					<li><a href="stock.html">Stock Performance</a></li>
+					<li><a href="governance.html">Corporate Governance</a>
+						<ul>
+							<li><a href="chairman.html">Chairman</a></li>
+							<li><a href="president.html">President</a></li>
+							<li><a href="cfo.html">CFO</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li><a href="contact.html">Contact</a></li>
+</ul>
+</body>
+</html>

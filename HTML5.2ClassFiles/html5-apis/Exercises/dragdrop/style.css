@@ -1,0 +1,48 @@
+#dropzoneleft {
+	border:2px solid black;
+	width:200px;
+	height:200px;	
+	float:left;
+	margin-right:10px;
+	text-align:center;
+}
+
+#dropzoneleft p {
+	font-size:20px;
+	margin-top:80px;
+}
+
+#drag {
+	background-color:red;
+	width:100px;
+	height:100px;	
+	float:left;
+	cursor:move;
+	text-align: center;
+}
+
+#drag p {
+	font-size:16px;
+	margin-top:34px;
+}
+
+#dropzoneright {
+	border:2px solid black;
+	width:200px;
+	height:200px;	
+	float:left;
+	margin-left:10px;
+	text-align:center;
+}
+
+#dropzoneright p {
+	font-size:20px;
+	margin-top:80px;
+}
+
+#output {
+	background-color:white;	
+	float:left;
+	width:200px;
+	margin-right:25px;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+
+ol#MathQuiz{
+	font-size:	x-large;
+	width:200px;
+}
+
+.border{
+	border:2px solid;
+}
+
+.Answers{ 
+	cursor:url(wrong.cur), auto;
+}
+
+#Right{
+	cursor:url(right.cur), pointer;
+}
+
+</style>
+<title>Simple Quiz</title>
+</head>
+<body>
+<h1>Math Quiz</h1>
+<ol id="MathQuiz" class="border">
+	<li class="border">5+4
+		<ol class="Answers">
+			<li class="border">7</li>
+			<li class="border">8</li>
+			<li class="border" id="Right">9</li>
+			<li class="border">10</li>
+		</ol>
+	</li>
+	<li class="border">7-2
+		<ol class="Answers">
+			<li class="border">9</li>
+			<li class="border" id="Right">5</li>
+			<li class="border">3</li>
+			<li class="border">>4</li>
+		</ol>
+	</li>
+</ol>
+</body>
+</html>

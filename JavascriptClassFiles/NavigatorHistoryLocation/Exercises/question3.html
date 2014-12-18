@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>History Test: Question 3</title>
+<style>
+	#lastAnswer{
+		font-weight:bold;
+	}
+</style>
+
+<script type="text/javascript">
+	
+	history.go(1);
+	var s = location.search;
+	//***ALTERNATE SOLUTION***(from video)
+	
+	var values = {};
+	var queryString= s.substring(1);
+	var parameters= queryString.split('&');
+	for (var i=0; i<parameters.length; i++){
+		var parameter=parameters[i].split('=');
+		values[parameter[0]]= parameter[1];
+	}
+	
+	var response=(values.answer == "Washington") ? "Right!" : "Wrong!";
+	//***EXERCISE SOLUTION***
+ 	/*var start = s.indexOf("=")+1;
+	var answer = s.substring(start);
+	var response = (answer == "Washington") ? "Right!" : "Wrong!";*/
+
+
+function validate(form){
+    var errors = [];
+     
+    if (!checkRadioArray(form.answer) ) {
+        errors[errors.length] = "You must pick an answer!";
+	}
+        
+    if (errors.length > 0) {
+        reportErrors(errors);
+        return false;
+    }
+     
+    return true;
+}
+
+function checkRadioArray(radioButtons){
+    for (var i=0; i < radioButtons.length; i++) {
+        if (radioButtons[i].checked) {
+            return true;
+        }
+    }
+    return false;
+}
+ 
+function reportErrors(errors){
+    var msg = "There were some problems...\n";
+    var numError;
+    for (var i = 0; i<errors.length; i++) {
+        numError = i + 1;
+        msg += "\n" + numError + ". " + errors[i];
+    }
+    alert(msg);
+}
+</script>
+</head>
+<body>
+<p id="lastAnswer">
+	<script type="text/javascript">
+		document.write("User "+ values.userid + ", your answer was: " + values.answer + ". " + response);
+		//EXERCISE document.write
+		/*document.write("Your answer was: " + answer + ". " + response);*/
+	</script>
+</p>
+<form action="end-quiz.html" onSubmit="return validate(this);">
+	Which president was known as "His Excellency?"<br>
+	<input type="radio" name="answer" value="Lincoln">Abraham Lincoln<br>
+	<input type="radio" name="answer" value="McKinley">William McKinley<br>
+	<input type="radio" name="answer" value="Washington">George Washington<br>
+	<input type="radio" name="answer" value="Kennedy">John F. Kennedy<br>
+	<input type="submit" value="Answer"><br>
+    <input type="reset" value="Start Over" onClick="window.location.href= 'question1.html';">
+    <input type="hidden" name ="userid" value="1">
+</form>
+</body>
+</html>

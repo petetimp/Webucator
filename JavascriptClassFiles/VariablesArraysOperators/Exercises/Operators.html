@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript Operators</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	var rockAlbums=[];
+	var rockStars = [];
+	rockStars[0] = prompt("Who is your favorite rock star?", "")
+	rockAlbums[0] = prompt("How many albums do you own from this artist?","");
+		/*
+	Ask the user how many of this rockstar's albums she owns and store
+	the result in a variable.
+	*/
+	
+	if (isNaN(rockAlbums[0])){
+		alert("Please enter a number");
+	}else{
+		rockStars[1] = prompt("And your next favorite rock star?", "");
+	     
+		rockAlbums[1] = prompt("How many albums do you own from this artist?","");
+		/*
+	Ask the user how many of this rockstar's albums she owns and store
+	the result in a variable.
+	*/
+		
+		if (isNaN(rockAlbums[1])){
+			alert("Please enter a number");
+		}else{
+
+			var moreAlbums = rockAlbums[0]-rockAlbums[1];
+		
+			if ( moreAlbums > 0){
+				document.write("You have " + moreAlbums + " more album(s) from your favorite artist than your second favorite artist");
+			}else
+			if (moreAlbums < 0){
+			
+				moreAlbums= Number(moreAlbums) + Number(moreAlbums)*-2;
+				document.write("You have " + moreAlbums + " more album(s) from your second favorite artist than your favorite artist");
+			}else{
+				document.write("You have the same amount of albums from your favorite artist as your second favorite artist");
+			}
+		}
+	}
+</script>
+</head>
+<body>
+
+<!--
+	Let the user know how many more of her favorite rockstar's albums
+	she has than of her second favorite rockstar's albums.
+-->
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Colormania</title>
+<script type="text/javascript">
+	var userName=prompt("What is your name?","");
+	//Prompt user for name
+	
+	function changeBg(color){
+		document.body.style.backgroundColor=color;
+		alert(userName + ", You just changed the backround color to "+ color+".");
+	}
+	/*
+	Write a function called changeBg() that changes the background
+	color and then pops up an alert telling the user, by name, what
+	the new background color is.
+	*/
+</script>
+</head>
+<body>
+<form>
+	<input type="button" value="red" onclick=			"changeBg('red');">
+    <input type="button" value="green" onclick="changeBg('green');">
+    <input type="button" value="blue" onclick="changeBg('blue');">
+    <!--<span onClick="alert(userName + ', You just changed the background color to orange.');">-->
+    <input type="button" value="orange" onclick="changeBg('orange');">
+    <!--</span>-->
+    <input type="button" value="custom" onclick=			"changeBg(prompt('What is your favorite color?',''));">
+    
+</form>
+</body>
+</html>

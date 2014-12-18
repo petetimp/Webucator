@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sailboat</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script>
+function drawPath() {
+	var canvas=document.getElementById("my-canvas");
+	if (canvas.getContext) {
+		context = canvas.getContext("2d");
+		context.beginPath();
+		context.moveTo(100,50);
+		context.lineTo(100,150);
+		context.lineTo(105,150);
+		context.lineTo(105,50);
+		context.lineTo(100,50);
+		context.fill();
+		context.fillStyle = "rgb(255,255,0)";
+		context.strokeStyle="rgb(255,255,0)";
+		context.beginPath();
+		context.moveTo(98,50);
+		context.lineTo(55,145);
+		context.lineTo(93,131);
+		context.fill();
+		context.beginPath();
+		context.moveTo(107,50);
+		context.lineTo(160,141);
+		context.lineTo(111,141);
+		context.fill();
+		context.fillStyle="rgb(0,216,168)";
+		context.strokeStyle="rgb(0,0,0)";
+		context.beginPath();
+		context.moveTo(30,150);
+		context.lineTo(175,150);
+		context.lineTo(150,170);
+		context.lineTo(75,170);
+		context.lineTo(30,150);
+		context.fill();
+		context.stroke();
+		
+	}
+}
+</script>
+</head>
+<body>
+<canvas id="my-canvas" height="200" width="200">Your browser doesn't support canvas.</canvas>
+<button onclick="drawPath();">Draw</button>
+</body>
+</html>

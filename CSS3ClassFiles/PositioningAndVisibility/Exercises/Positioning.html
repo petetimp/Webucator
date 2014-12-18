@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Building a House</title>
+<style type="text/css">
+
+#plot {
+	background-image:url(Images/grass.jpg);
+	/* For centering the plot */
+	/* Using relative positioning */
+	/*position: relative;
+	margin: 10px auto 0px auto;*/
+	/* For centering the plot */
+	/* Using absolute positioning */
+	position: absolute;
+	left: 50%;
+	margin-left: -250px;
+	width: 500px;
+	height: 500px;
+	border: 1px solid #060;
+}
+
+#main {
+	position:absolute;
+	top:100px;
+	left:40px;
+}
+
+#roof {
+	position:absolute;
+	top:10px;
+	left:26px;
+}
+
+#chimney {
+	position:absolute;
+	top:15px;
+	left:256px;
+}
+
+#door {
+	position:absolute;
+	top:192px;
+	left:343px;
+}
+
+#window{
+	position:absolute;
+	top:246px;
+	left:119px;
+}
+</style>
+</head>
+<body>
+<div id="wrapper">
+	<div id="plot"><img id="main" src="Images/main.png" alt="main"><img id="roof" src="Images/roof.png" alt="roof">
+		<img id="chimney" src="Images/chimney.png" alt="chimney">
+		<img id="door" src="Images/door.png" alt="door">
+		<img id="window" src="Images/window.png" alt="window">
+	</div>
+</div>
+</body>
+</html>

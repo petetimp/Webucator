@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Names>
+	<Name>
+		<Title>Mr.</Title>
+		<FName>Joshua</FName>
+		<LName>Lockwood</LName>
+	</Name>
+	<Name>
+		<Title></Title>
+		<FName>Bill </FName>
+		<LName>Smith</LName>
+	</Name>
+	<Name>
+		<Title></Title>
+		<FName>Bill </FName>
+		<LName>Smith</LName>
+	</Name>
+</Names>

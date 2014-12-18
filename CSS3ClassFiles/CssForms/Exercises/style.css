@@ -1,0 +1,139 @@
+body {
+	background-color:#ccc;	
+}
+
+h1 {
+	width:auto;
+	margin:5px 10px 10px 20px;
+	padding-bottom:10px;
+	border-bottom:1px solid #930;
+	font-size:xx-large;
+	color:#930;
+}
+
+/*Begin Form Styles*/
+form {
+	margin:5px 10px 10px 20px;
+	padding-bottom:20px;
+	color:#930;
+}
+
+fieldset {
+	margin-bottom:10px;
+	border-bottom:1px solid #930;
+	background-color:#eec;
+}
+
+legend {
+	padding-left:10px;
+	font-size:1.2em;
+	font-weight:bold;
+	letter-spacing:.5em;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-variant:small-caps;
+	color:#460;
+}
+
+fieldset fieldset {
+	margin-top:10px;	
+	border-bottom:none;
+}
+
+fieldset fieldset legend {
+	font-size:1em;
+	font-weight:bold;
+	letter-spacing:.4em;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#333;
+}
+
+form ol {
+	padding:20px;
+}
+
+fieldset fieldset ol {
+	margin-top:-10px;
+}
+
+form p {
+	margin:10px;
+	font-size:.8em;
+}
+
+form li {
+	list-style-type:none;
+	border-bottom:1px dotted #000;	
+	padding-bottom:2px;
+	margin-bottom:2px;
+}
+
+label {
+	width:200px;
+	float:left;
+	font-weight:bold;
+}
+
+span.label {
+	font-weight:bold;
+}
+
+li.radioContainer label {
+	display:block;
+	float:none;
+	font-weight:normal;
+}
+
+select, input[type="text"] {
+	width:200px;
+}
+
+textarea {
+	width:400px;
+	height:50px;
+}
+
+#buttons {
+	text-align:center;	
+}
+
+#buttons input {
+	height:50px;
+	width:150px;
+	font-size:1.5em;
+	color:#930;
+	font-variant:small-caps;
+	margin:10px;
+}
+
+#jobInfopos{
+	width:555px;
+	position:relative;
+	top:0px;
+	left:0px;
+}
+#personalInfopos{
+	width:555px;
+	position:absolute;
+	top:57px;
+	left:600px;
+}
+#empHistpos{
+	width:555px;
+	position:absolute;
+	top:240px;
+	left:20px;
+}
+#submitpos{
+	width:555px;
+	height:200px;
+	position:absolute;
+	top:1030px;
+	left:600px;
+}
+#edupos{
+	width:555px;
+	position:absolute;
+	top:510px;
+	left:600px;
+}
+/*End Form Styles*/

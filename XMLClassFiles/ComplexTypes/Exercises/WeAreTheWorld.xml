@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<Song xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Song.xsd">
+	<Title>We Are The World</Title>
+	<Artists>
+		<Artist>Willie Nelson</Artist>
+		<Artist>Cyndi Lauper</Artist>
+		<Artist>Billy Joel</Artist>
+		<Artist>Paul Simon</Artist>
+		<Artist>Stevie Wonder</Artist>
+	</Artists>
+	<Year>1985</Year>
+</Song>

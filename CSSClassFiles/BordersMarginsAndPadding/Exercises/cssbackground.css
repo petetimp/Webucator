@@ -1,0 +1,92 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	background-color: #99CC00;
+	color: #0F0F88;
+	background-image: url(../../CssText/Exercises/Images/TeaParty.gif);
+	background-attachment:fixed;
+	background-repeat: no-repeat;
+	background-position:20px 200px;
+}
+
+
+#top{
+	font-size: 250%;
+	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+	text-decoration: none;
+}
+
+#pooh{
+	font-size: 150%;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+	letter-spacing: 1em;
+	text-decoration: line-through;
+	vertical-align: super;
+	white-space: pre;
+}
+
+#alice{
+	font-size:150%;
+	font-family:Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+	word-spacing:1em;
+	text-align:right;
+	text-decoration:overline;
+	text-transform:lowercase;
+	vertical-align:sub;
+	white-space:nowrap;
+}
+  
+#naughtyboy{
+	font-size:150%;
+	font-family:Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", serif;
+	line-height:2;
+	text-align:end;
+	text-decoration:underline;
+	vertical-align:central;
+}
+  
+p{
+	font-size:inherit;
+	font-family:Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+	text-indent:.1;
+	text-transform:capitalize;
+	vertical-align:bottom;
+	background-color:#CC0
+}
+
+a{
+	display:block;
+	background-color:#FF3;
+	text-decoration:none;
+	font-size:inherit;
+	font-family:"Comic Sans MS";
+	font-style:italic;
+	text-transform:uppercase;
+	vertical-align:baseline;
+	border-right: 2px solid #999999;
+	border-bottom: 2px solid #999999;
+	border-top-width: 0px;
+	border-left-width: 0px;
+}
+
+a:hover{
+	color:#033;
+	border:1px;
+	border-style:solid;
+	border-color:#339;	
+}
+
+a:active{
+	color:red;
+	border-left: 2px solid #030;
+	border-top: 2px solid #030;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	 
+ 
+#poohlink, #alicelink, #naughtyboylink{
+	font-weight:bolder;
+	font-variant:small-caps;
+	font-style:normal;
+}

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE business_letter SYSTEM "BusinessLetter.dtd">
+
+  <business_letter>
+  
+    <date>November 29, 2011</date>
+
+    <recipient>
+      <name title="Mr.">
+          <firstname>Joshua</firstname>
+          <lastname>Lockwood</lastname> 
+      </name>
+      <company>
+      Lockwood &amp; Lockwood
+      </company>
+      <address>
+        <street>291 Broadway Ave.</street> 
+        <city>New York,</city>
+        <state>NY</state>
+        <zip>10007</zip>
+        <country>United States</country>          
+      </address>
+    </recipient>
+    <salutation>
+    Dear Mr. Lockwood:
+    </salutation>    
+    <body>
+      Along with this letter, I have enclosed the following items:
+      <enclosure>
+        <item>- two original, execution copies of the Webucator Master Services Agreement</item>
+        <item>- two original, execution copies of the Webucator Premier Support for 
+          Developers Services Description between 
+          Lockwood &amp; Lockwood and Webucator, Inc.
+        </item>
+      </enclosure>
+        
+        
+      Please sign and return all four original, execution copies to me at your
+      earliest convenience.  Upon receipt of the executed copies, we will 
+      immediately return a fully executed, original copy of both agreements to you.
+
+      Please send all four original, execution copies to my attention as follows:
+        <sendto>
+          <company>Webucator, Inc.</company>
+          <contact_info>
+            <street>4933 Jamesville Rd.</street>
+            <city>Jamesville,</city>
+            <state> NY   </state>
+            <zip>13078</zip>
+            <country>USA</country>
+            <employee>Attn: Bill Smith</employee>
+          </contact_info>
+        </sendto>
+        
+        
+      If you have any questions, feel free to call me at <phone>800-555-1000 x123 </phone>
+      or e-mail me at <email>bsmith@webucator.com</email>.
+    </body>
+
+    <closing> 
+      Best regards,
+      Bill Smith
+      VP, Operations
+    </closing>
+   
+  </business_letter>

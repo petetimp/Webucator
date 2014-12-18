@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Slide Show</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+var imagePaths = [];
+imagePaths[0] = "Images/Banner.jpg";
+imagePaths[1] = "Images/Hulk.jpg";
+imagePaths[2] = "Images/Bruce.jpg";
+imagePaths[3] = "Images/Batman.jpg";
+
+var imageCache = [];
+
+for (var i=0; i<imagePaths.length; i++) {
+	var s = imagePaths[i];
+	imageCache[i] = new Image();
+	imageCache[i].src = s;
+}
+
+var curSlide = 0;
+function changeSlide(dir){
+	curSlide += dir;
+	alert(curSlide);
+	if (curSlide < 0) {
+		curSlide = imageCache.length - 1;
+	} else if (curSlide >= imageCache.length) {
+		curSlide = 0;
+	}
+	document.Slide.src = imagePaths[curSlide];
+}
+
+var showTimer;
+function play() {
+	
+		showTimer = setInterval(function() { changeSlide(1); },1000);
+		//write code to change slide every 1 second.
+	
+}
+
+
+function stop() {
+	clearInterval(showTimer);
+	//write code to stop slide show
+}
+</script>
+</head>
+<body onload="play()">
+<div style="text-align:center;">
+<h1>Slide Show</h1>
+<img name="Slide" src="Images/Banner.jpg">
+<form>
+<input type="button" onclick="play();" value="Play">
+<input type="button" onclick="stop();" value="Stop">
+</form>
+</div>
+</body>
+</html>

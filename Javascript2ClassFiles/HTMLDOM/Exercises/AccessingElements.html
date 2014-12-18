@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Accessing Elements</title>
+<style type="text/css">
+	.off {
+		color:#ccc;
+	}
+	
+	.weekend {
+		background-color:#ff9;	
+	}
+	
+	.weekendhead{
+		background-color:#ff9;
+		
+	}
+	
+	.clickable {
+		cursor:pointer;
+		color:#06f;
+		text-decoration:underline;
+	}
+	
+	.highlight {
+		background-color:#006;
+		color:#fff;
+	}
+</style>
+<script type="text/javascript" src="../../lib.js"></script>
+<script type="text/javascript">
+	//adds the "highlight" class to the passed-in node or nodes.
+	function highlight(nodes) {
+		if (!nodes.length) { //make it an array
+			var nodes = [nodes];
+		}
+		
+		for (var i=0; i<nodes.length; i++) {
+			addClass(nodes[i],"highlight");
+		}
+	}
+	//removes the "highlight" class from the passed-in node or nodes.
+	function unhighlight(nodes) {
+		if (!nodes.length) { //make it an array
+			var nodes = [nodes];
+		}
+		
+		for (var i=0; i<nodes.length; i++) {
+			removeClass(nodes[i],"highlight");
+		}
+	}
+	//helper function removing the "highlight" class from all the td elements to reset the calendar.  This unhighlights every day rather than a specific node and is required for every function except allDays();
+	function unhighlightDays() {
+		var calendar = document.getElementById("calendar");
+		var days = calendar.getElementsByTagName("td");
+		unhighlight(days);
+	}
+	//Gets all the weekend days using the getElementsByClassName() helper function from the ClassFiles/lib.js library.  The first parameter is the node, while the second parameter is the class within that node. It then passes it to the highlight() function after calling unhighlightDays() to reset the calendar.
+	function weekEndDays() {
+		var calendar = document.getElementById("calendar");
+		var weekEndDays = getElementsByClassName(calendar,"weekend");
+		unhighlightDays();
+		highlight(weekEndDays);
+		return weekEndDays;
+	}
+	
+	function offDays() {
+		var calendar=document.getElementById("calendar");
+		//The getElementsByClassName method here is for backwards compatability.  For modern browsers we can use 'var offDays=calendar.getElementsByClassName("off");
+		//getElementsByClassName(calendar,"off") gets the table with an id of "calendar" and the class of "off"
+		var offDays = getElementsByClassName(calendar,"off");
+		unhighlightDays();
+		highlight(offDays);
+		return offDays;
+	}
+	
+	function allDays() {
+		var calendar = document.getElementById("calendar");
+        var days = calendar.getElementsByTagName("td");
+        highlight(days);
+        return days;
+	}
+	
+	function firstDayOfMonth() {
+		var calendar = document.getElementById("calendar");
+        //var headerRow = calendar.getElementsByTagName("tr")[0]; (this line not needed for function to work)
+		//access the second row (first week) of the calendar to find the first day of the month 
+        var firstRow = calendar.getElementsByTagName("tr")[1];
+		//access the days within that week (an array)
+        var tds = firstRow.getElementsByTagName("td");
+        unhighlightDays();
+		//loop through the array in order to find the day whose innerHTML=1.
+        for (var i=0; i<tds.length; i++) {
+            if ( tds[i].innerHTML==1 ) {
+				//once the correct day is found highlight and return it
+                highlight(tds[i]);
+                return tds[i];
+            }
+        }
+    }
+	
+	function weekDays() {
+		var weekDays;
+		if (document.querySelectorAll) {
+            weekDays = document.querySelectorAll("td:not(.weekend)");
+        } else {
+            var calendar = document.getElementById("calendar");
+			//access all of the days on the calendar
+            var days = calendar.getElementsByTagName("td");
+			//create an empty 'weekdays' array that will store the matching days
+            var weekDays = [];
+            for (var i=0; i<days.length; i++) {
+				//if the day (td) in the month does not have a class of "weekend" add it on to the weekDays array
+                if ( !hasClassName(days[i],"weekend") ) {
+                    weekDays.push(days[i]);
+                }
+            }
+        }
+		//reset the calendar
+		unhighlightDays();
+		//highlight the newly created array of weekdays
+		highlight(weekDays);
+		return weekDays;
+	}
+	
+	function weekDaysThisMonth() {
+		//create a new "weekDaysThisMonth" array
+		var weekDaysThisMonth=[];
+		//Get all of the weekdays in the calendar from the "weekdays()" function (last function).
+        var days=weekDays();
+        var i;
+        for (i=0; i<days.length; ++i) {
+			//if the day (td) in the weekDays array does not have a class name of "off", add it on to the "weekDaysThisMonth" array.
+            if ( !hasClassName(days[i],"off") ) {
+                weekDaysThisMonth.push(days[i]);
+            }
+        }
+        unhighlightDays();
+		//highlight and return the new array
+        highlight(weekDaysThisMonth);
+        return weekDaysThisMonth;
+    }
+</script>
+</head>
+<body>
+<table id="calendar">
+	<tr>
+		<th class="weekendhead">Sun</th>
+		<th>Mon</th>
+		<th>Tue</th>
+		<th>Wed</th>
+		<th>Thu</th>
+		<th>Fri</th>
+		<th class="weekendhead">Sat</th>
+	</tr>
+	<tr>
+		<td class="off weekend">30</td>
+		<td>1</td>
+		<td>2</td>
+		<td>3</td>
+		<td>4</td>
+		<td>5</td>
+		<td class="weekend">6</td>
+	</tr>
+	<tr>
+		<td class="weekend">7</td>
+		<td>8</td>
+		<td>9</td>
+		<td>10</td>
+		<td>11</td>
+		<td>12</td>
+		<td class="weekend">13</td>
+	</tr>
+	<tr>
+		<td class="weekend">14</td>
+		<td>15</td>
+		<td>16</td>
+		<td>17</td>
+		<td>18</td>
+		<td>19</td>
+		<td class="weekend">20</td>
+	</tr>
+	<tr>
+		<td class="weekend">21</td>
+		<td>22</td>
+		<td>23</td>
+		<td>24</td>
+		<td>25</td>
+		<td>26</td>
+		<td class="weekend">27</td>
+	</tr>
+	<tr>
+		<td class="weekend">28</td>
+		<td>29</td>
+		<td>30</td>
+		<td>31</td>
+		<td class="off">1</td>
+		<td class="off">2</td>
+		<td class="off weekend">3</td>
+	</tr>
+</table>
+<ol>
+<ul>
+	<li class="clickable" onclick="allDays();">All Days</li>
+	<li class="clickable" onclick="weekEndDays();">Weekend Days</li>
+	<li class="clickable" onclick="offDays();">Days NOT in this Month</li>
+	<li class="clickable" onclick="weekDays();">Weekdays</li>
+	<li class="clickable" onclick="weekDaysThisMonth();">Weekdays This Month</li>
+	<li class="clickable" onclick="firstDayOfMonth();">First Day of This Month</li>
+</ul>
+</ol>
+</body>
+</html>
